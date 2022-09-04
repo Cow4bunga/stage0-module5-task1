@@ -1,6 +1,8 @@
 package com.epam.mjc.stage0;
 
 
+
+
 /**
  * Here are the tasks for working with the arrays.
  * <p>
@@ -130,6 +132,36 @@ public class ArrayTasks {
      * arr = [[5, 4], [7]]       -> [[7], [4, 5]]
      */
     public int[][] sortRaggedArray(int[][] arr) {
-        return null;
+        // sorting arrays by length
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length-i-1; j++) {
+                int[] tmp;
+                if(arr[j].length>arr[j+1].length){
+                    tmp=arr[j];
+                    arr[j]=arr[j+1];
+                    arr[j+1]=tmp;
+                }
+            }
+        }
+
+        // sorting sub arrays by values
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++) {
+                for (int k = 0; k < arr[i].length - j - 1; k++) {
+                    if (arr[i][k] > arr[i][k + 1]) {
+                        int tmp = arr[i][k];
+                        arr[i][k] = arr[i][k + 1];
+                        arr[i][k + 1] = tmp;
+                    }
+                }
+            }
+        }
+
+        return arr;
     }
+
+//    public static void main(String[] args) {
+//        int[][] arr={{3,1,2,-6,-45},{3,2},{1}};
+//        System.out.println(Arrays.deepToString(sortRaggedArray(arr)));
+//    }
 }
